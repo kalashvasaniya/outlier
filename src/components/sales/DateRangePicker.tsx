@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
 import {
     Popover,
     PopoverContent,
@@ -10,7 +9,13 @@ import {
 import { cn } from "@/lib/utils"
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { format } from "date-fns"
+import dynamic from 'next/dynamic'
 import { useState } from "react"
+
+const DynamicCalendar = dynamic(
+    () => import('@/components/ui/calendar').then((mod) => mod.Calendar),
+    { ssr: false }
+)
 
 export function DateRangePicker() {
     const [date, setDate] = useState<Date>()
@@ -31,7 +36,7 @@ export function DateRangePicker() {
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
+                    <DynamicCalendar
                         mode="single"
                         selected={date}
                         onSelect={setDate}

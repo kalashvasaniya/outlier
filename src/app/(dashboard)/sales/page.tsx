@@ -1,3 +1,5 @@
+"use client"
+
 import { DateRangePicker } from "@/components/sales/DateRangePicker"
 import { SalesChart } from "@/components/sales/SalesChart"
 import { SalesFilters } from "@/components/sales/SalesFilters"
